@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
 class CategoryController extends BaseController
@@ -14,7 +15,8 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        dd('index');
+        $items=BlogPost::paginate(5);
+        return view('blog.posts.index',compact('items'));
     }
 
     /**
@@ -57,7 +59,8 @@ class CategoryController extends BaseController
      */
     public function edit($id)
     {
-        //
+
+
     }
 
     /**

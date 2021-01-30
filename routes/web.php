@@ -17,13 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('rest',\App\Http\Controllers\RestTestController::class)
-    ->names('RestTest');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::resource('blog/post',\App\Http\Controllers\Blog\PostController::class);
+require __DIR__.'/auth.php';
 
-
-///////////////////////////////
-
-Route::resource('blog/admin/categories',\App\Http\Controllers\Blog\admin\CategoryController::class)
-    ->names('blog.admin.category');
+Route::resource('blog/admin/category',\App\Http\Controllers\Blog\admin\CategoryController::class)
+    ->names('blog.admin.categories');
