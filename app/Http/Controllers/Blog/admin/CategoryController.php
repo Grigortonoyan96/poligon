@@ -59,8 +59,8 @@ class CategoryController extends BaseController
      */
     public function edit($id)
     {
-
-
+        $item=BlogPost::find($id);
+        return view('blog.admin.edit',compact('item'));
     }
 
     /**
@@ -72,7 +72,15 @@ class CategoryController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateData = $request->except(['_method', "_token"]);
+
+        BlogPost::find($id)->update($updateData);
+
+//        $blogPost->title = $request->title;
+//        $blogPost->category_id = $request->category_id;
+//        $blogPost->save();
+
+        dd("updated");
     }
 
     /**

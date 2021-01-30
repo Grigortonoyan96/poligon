@@ -10,4 +10,6 @@ class BlogPost extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = ['title', 'category_id'];
 }

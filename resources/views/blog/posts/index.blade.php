@@ -1,16 +1,30 @@
-<head>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<tbody>
-<table>
+@extends('layouts.guest')
+@section('body')
+
+<table style="text-align: center">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Category ID
+            </th>
+        </tr>
+    </thead>
+    <tbody>
     @foreach($items as $item)
         <tr>
             <td>{{$item->id }}</td>
             <td>{{$item->title }}</td>
-            <td>{{$item->parent_id}}</td>
+            <td>{{$item->category_id}}</td>
         </tr>
     @endforeach
         {{ $items->links() }}
+    </tbody>
 </table>
-</tbody>
+
+@endsection
