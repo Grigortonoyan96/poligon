@@ -21,3 +21,9 @@ Route::resource('rest',\App\Http\Controllers\RestTestController::class)
     ->names('RestTest');
 
 Route::resource('blog/post',\App\Http\Controllers\Blog\PostController::class);
+
+
+///////////////////////////////
+
+Route::resource('blog/admin/categories',\App\Http\Controllers\Blog\admin\CategoryController::class)
+    ->names('blog.admin.category');
