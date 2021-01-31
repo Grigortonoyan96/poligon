@@ -13,6 +13,9 @@
             <th>
                 Category ID
             </th>
+            <th>
+                Edit
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +24,12 @@
             <td>{{$item->id }}</td>
             <td>{{$item->title }}</td>
             <td>{{$item->category_id}}</td>
+            <td>
+                <a href="{{route('blog.admin.categories.edit',$item->id)}}" class="btn btn-primary">edit</a>
+            </td>
         </tr>
+
+
     @endforeach
         {{ $items->links() }}
     </tbody>

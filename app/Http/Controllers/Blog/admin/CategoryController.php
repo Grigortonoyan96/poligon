@@ -72,15 +72,28 @@ class CategoryController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        $updateData = $request->except(['_method', "_token"]);
+       /* $updateData = $request->except(['_method', "_token"]);*/
 
-        BlogPost::find($id)->update($updateData);
+       /* BlogPost::find($id)->update($updateData);*/
 
 //        $blogPost->title = $request->title;
 //        $blogPost->category_id = $request->category_id;
 //        $blogPost->save();
 
-        dd("updated");
+        //BlogPost::find($id)->update(['title'=>$request->title,'category_id'=>$request->category_id]);
+       //$all=$request->all();
+        //BlogPost::find($id)->fill($all)->save();
+
+        BlogPost::find($id)->fill(
+            ['title'  =>  $request->title ,
+              'category_id' => $request->category_id,
+                ])->save();
+        return redirect()->route('blog.admin.categories.index',$id);
+
+
+// ->With(['success' => 'work']);
+
+
     }
 
     /**
