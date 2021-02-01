@@ -48,7 +48,7 @@ class CategoryController extends BaseController
      */
     public function show($id)
     {
-        //
+        dd('show');
     }
 
     /**
@@ -83,12 +83,26 @@ class CategoryController extends BaseController
         //BlogPost::find($id)->update(['title'=>$request->title,'category_id'=>$request->category_id]);
        //$all=$request->all();
         //BlogPost::find($id)->fill($all)->save();
+$id=1111;
+        $result=BlogPost::find($id);
 
-        BlogPost::find($id)->fill(
-            ['title'  =>  $request->title ,
-              'category_id' => $request->category_id,
+
+        if($result){
+            $result->fill(
+                ['title'  =>  $request->title ,
+                    'category_id' => $request->category_id,
                 ])->save();
-        return redirect()->route('blog.admin.categories.index',$id);
+            return redirect('blog.admin.categories.edit');
+        }
+        else {
+            return redirect('blog.admin.categories.edit')
+                ->withErrors(['msg' => 'don\'t save']);
+        }
+
+
+
+
+
 
 
 // ->With(['success' => 'work']);
@@ -104,6 +118,8 @@ class CategoryController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        BlogPost::destroy($id);
+
+        return redirect()->route('blog.admin.categories.index');
     }
 }

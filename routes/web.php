@@ -25,3 +25,5 @@ require __DIR__.'/auth.php';
 
 Route::resource('blog/admin/category',\App\Http\Controllers\Blog\admin\CategoryController::class)
     ->names('blog.admin.categories');
+
+

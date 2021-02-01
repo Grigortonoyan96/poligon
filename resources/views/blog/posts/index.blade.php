@@ -16,6 +16,9 @@
             <th>
                 Edit
             </th>
+            <th>
+                Delete
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +29,13 @@
             <td>{{$item->category_id}}</td>
             <td>
                 <a href="{{route('blog.admin.categories.edit',$item->id)}}" class="btn btn-primary">edit</a>
+            </td>
+            <td>
+                <form action="{{ route('blog.admin.categories.destroy', $item->id)}}" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <input class="btn btn-danger" type="submit" value="Delete" />
+                </form>
             </td>
         </tr>
 
