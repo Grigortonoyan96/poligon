@@ -27,7 +27,8 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-        //
+
+        return view('blog.admin.create');
     }
 
     /**
@@ -38,7 +39,13 @@ class CategoryController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        \DB::table('blog_posts')->insert([
+            'user_id' => $request->user_id,
+            'category_id'   => $request->category_id,
+            'title' => $request->title,
+            'content_raw'   => $request->content_raw,
+            'content_html'   => $request->content_html,
+        ]);
     }
 
     /**
@@ -100,10 +107,9 @@ class CategoryController extends BaseController
             return back()->withInput()->withErrors(['msg' => "this id[{$id}] doesn't find"]);
         }
 
+        /*$update=$request->all();
 
-
-
-
+        BlogPost::find($id)->update($update);*/
 
 
 // ->With(['success' => 'work']);

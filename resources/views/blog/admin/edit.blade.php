@@ -2,16 +2,15 @@
 
 @section('body')
     @php /** @var \Illuminate\Support\ViewErrorBag $errors */                                       @endphp
-     @if($errors->any())
+
+    @if($errors->any())
          {{  $errors->first() }}
-         @endif
+     @endif
     @if(session('success'))
         <div>
             {{ session()->get('success') }}
         </div>
-
-
-        @endif
+    @endif
     <form method="post" action="{{ route('blog.admin.categories.update',$item->id) }}">
         @method('PUT')
         @csrf

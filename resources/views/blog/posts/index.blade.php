@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 @section('body')
-
+    <a href="{{route('blog.admin.categories.create')}}" class="btn btn-primary">ADD</a>
 <table style="text-align: center">
     <thead>
         <tr>
