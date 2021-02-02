@@ -37,7 +37,7 @@ class CategoryController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogPostUpdateRequest $request)
     {
         \DB::table('blog_posts')->insert([
             'user_id' => $request->user_id,

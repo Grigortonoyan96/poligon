@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('body')
-    @php /** @var \Illuminate\Support\ViewErrorBag $errors */                                       @endphp
+    @php /** @var \Illuminate\Support\ViewErrorBag $errors */    @endphp
 
     @if($errors->any())
          {{  $errors->first() }}

@@ -1,4 +1,9 @@
 <table>
+    @php /** @var \Illuminate\Support\ViewErrorBag $errors */    @endphp
+    @if($errors->any())
+        {{ implode('', $errors->all(':message')) }}
+
+    @endif
 <form method="Post" action="{{ route('blog.admin.categories.store') }}">
     @csrf
    <label>title</label>

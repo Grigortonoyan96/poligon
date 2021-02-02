@@ -25,7 +25,7 @@ class BlogPostUpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|min:5|max:200',
-            'category_id'   => 'integer|max:12',
+            'category_id'   => 'integer|max:11',
         ];
     }
 }
