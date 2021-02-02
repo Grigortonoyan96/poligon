@@ -83,7 +83,7 @@ class CategoryController extends BaseController
         //BlogPost::find($id)->update(['title'=>$request->title,'category_id'=>$request->category_id]);
        //$all=$request->all();
         //BlogPost::find($id)->fill($all)->save();
-$id=1111;
+
         $result=BlogPost::find($id);
 
 
@@ -92,8 +92,8 @@ $id=1111;
                 ['title'  =>  $request->title ,
                     'category_id' => $request->category_id,
                 ])->save();
-            return redirect('blog.admin.categories.edit')
-                ->with(['success'=>'all ok']);
+            return back()
+                ->with(['success'=>'Changes are dune well']);
         }
         else {
             return back()->withInput()->withErrors(['msg' => "this id[{$id}] dosn't find"]);

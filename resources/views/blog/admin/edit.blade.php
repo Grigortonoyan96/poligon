@@ -1,11 +1,17 @@
 @extends('layouts.guest')
 
 @section('body')
-    @php /** @var \Illuminate\Support\ViewErrorBag $errors */                                               @endphp
+    @php /** @var \Illuminate\Support\ViewErrorBag $errors */                                       @endphp
      @if($errors->any())
          {{  $errors->first() }}
-
          @endif
+    @if(session('success'))
+        <div>
+            {{ session()->get('success') }}
+        </div>
+
+
+        @endif
     <form method="post" action="{{ route('blog.admin.categories.update',$item->id) }}">
         @method('PUT')
         @csrf
