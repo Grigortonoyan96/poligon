@@ -92,11 +92,11 @@ $id=1111;
                 ['title'  =>  $request->title ,
                     'category_id' => $request->category_id,
                 ])->save();
-            return redirect('blog.admin.categories.edit');
+            return redirect('blog.admin.categories.edit')
+                ->with(['success'=>'all ok']);
         }
         else {
-            return redirect('blog.admin.categories.edit')
-                ->withErrors(['msg' => 'don\'t save']);
+            return back()->withInput()->withErrors(['msg' => 'error']);
         }
 
 
