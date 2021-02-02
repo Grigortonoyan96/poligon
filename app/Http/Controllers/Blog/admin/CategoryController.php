@@ -96,7 +96,7 @@ class CategoryController extends BaseController
                 ->with(['success'=>'Changes are dune well']);
         }
         else {
-            return back()->withInput()->withErrors(['msg' => "this id[{$id}] dosn't find"]);
+            return back()->withInput()->withErrors(['msg' => "this id[{$id}] doesn't find"]);
         }
 
 
