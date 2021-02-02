@@ -96,7 +96,7 @@ $id=1111;
                 ->with(['success'=>'all ok']);
         }
         else {
-            return back()->withInput()->withErrors(['msg' => 'error']);
+            return back()->withInput()->withErrors(['msg' => "this id[{$id}] dosn't find"]);
         }
 
 
