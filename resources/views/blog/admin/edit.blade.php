@@ -7,7 +7,7 @@
          @endif
     @if(session('success'))
         <div>
-            {{ session('success') }}
+            {{ session()->get('success') }}
         </div>
 
 

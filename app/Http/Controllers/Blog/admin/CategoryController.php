@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BlogPostUpdateRequest;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
@@ -70,7 +71,7 @@ class CategoryController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogPostUpdateRequest  $request, $id)
     {
        /* $updateData = $request->except(['_method', "_token"]);*/
 
