@@ -5,10 +5,19 @@ namespace App\Http\Controllers\Blog\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogPostUpdateRequest;
 use App\Models\BlogPost;
+use App\Repositories\BlogCategoryRepository;
 use Illuminate\Http\Request;
 
 class CategoryController extends BaseController
 {
+    private $blogCategoryRepository;
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +56,6 @@ class CategoryController extends BaseController
             'content_html'   => $request->content_html,
         ]);*/
         $create=$request->except(['_method', "_token"]);
-        dd($create);
         $post = (new BlogPost())->create($create);
 
 
@@ -80,7 +88,8 @@ class CategoryController extends BaseController
      */
     public function edit($id)
     {
-        $item=BlogPost::find($id);
+        //$item=BlogPost::find($id);
+        $blogCategoryRepository->getEdit($id);
         return view('blog.admin.edit',compact('item'));
     }
 
