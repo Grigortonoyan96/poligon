@@ -39,13 +39,26 @@ class CategoryController extends BaseController
      */
     public function store(BlogPostUpdateRequest $request)
     {
-        \DB::table('blog_posts')->insert([
+       /* \DB::table('blog_posts')->insert([
             'user_id' => $request->user_id,
             'category_id'   => $request->category_id,
             'title' => $request->title,
             'content_raw'   => $request->content_raw,
             'content_html'   => $request->content_html,
-        ]);
+        ]);*/
+        $create=$request->except(['_method', "_token"]);
+        dd($create);
+        $post = (new BlogPost())->create($create);
+
+
+
+      /*  $comment = $post->create([
+            'category_id'   => request('category_id'),
+            'title' => request('title'),
+            'content_raw'   => request('content_raw'),
+            'content_html'   => request('content_html'),
+            'user_id' => $request->user_id,]);*/
+
     }
 
     /**
