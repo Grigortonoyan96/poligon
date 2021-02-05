@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Blog\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogPostUpdateRequest;
+use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Repositories\BlogCategoryRepository;
 use Illuminate\Http\Request;
 
+
+
 class CategoryController extends BaseController
 {
     private $blogCategoryRepository;
+
     public function __construct()
     {
         parent::__construct();
@@ -36,7 +40,6 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-
         return view('blog.admin.create');
     }
 
@@ -89,7 +92,7 @@ class CategoryController extends BaseController
     public function edit($id)
     {
         //$item=BlogPost::find($id);
-        $blogCategoryRepository->getEdit($id);
+        $this->blogCategoryRepository->getForComboBox();
         return view('blog.admin.edit',compact('item'));
     }
 
