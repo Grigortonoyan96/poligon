@@ -11,5 +11,5 @@ class BlogPost extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['title', 'category_id','user_id','content_raw','content_html'];
+    protected $fillable = ['title', 'category_id'];
 }

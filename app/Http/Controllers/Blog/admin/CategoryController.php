@@ -19,7 +19,7 @@ class CategoryController extends BaseController
     {
         parent::__construct();
 
-        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+        $this->blogCategoryRepository = new BlogCategoryRepository();
     }
 
     /**
@@ -59,7 +59,8 @@ class CategoryController extends BaseController
             'content_html'   => $request->content_html,
         ]);*/
         $create=$request->except(['_method', "_token"]);
-        $post = (new BlogPost())->create($create);
+//        $post = (new BlogPost())->create($create);
+        $post = BlogPost::create($create);
 
 
 
@@ -91,8 +92,9 @@ class CategoryController extends BaseController
      */
     public function edit($id)
     {
-        //$item=BlogPost::find($id);
-        $this->blogCategoryRepository->getForComboBox();
+        $item=$this->blogCategoryRepository->getEdit($id);
+
+        // $this->blogCategoryRepository->getForComboBox();
         return view('blog.admin.edit',compact('item'));
     }
 
@@ -117,10 +119,10 @@ class CategoryController extends BaseController
        //$all=$request->all();
         //BlogPost::find($id)->fill($all)->save();
 
-        $result=BlogPost::find($id);
+        //$result=BlogPost::find($id);
+        $this->blogCategoryRepository->getUpdate($id,$request);
 
-
-        if($result){
+        /*if($result){
             $result->fill(
                 ['title'  =>  $request->title ,
                     'category_id' => $request->category_id,
@@ -130,7 +132,7 @@ class CategoryController extends BaseController
         }
         else {
             return back()->withInput()->withErrors(['msg' => "this id[{$id}] doesn't find"]);
-        }
+        }*/
 
         /*$update=$request->all();
 
