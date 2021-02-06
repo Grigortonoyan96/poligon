@@ -29,7 +29,8 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        $items=BlogPost::paginate(5);
+        $items = $this->blogCategoryRepository->getCategories(5);
+
         return view('blog.posts.index',compact('items'));
     }
 
@@ -59,10 +60,8 @@ class CategoryController extends BaseController
             'content_html'   => $request->content_html,
         ]);*/
         $create=$request->except(['_method', "_token"]);
-//        $post = (new BlogPost())->create($create);
-        $post = BlogPost::create($create);
 
-
+        $category = $this->blogCategoryRepository->createCategory($create);
 
       /*  $comment = $post->create([
             'category_id'   => request('category_id'),
@@ -120,7 +119,7 @@ class CategoryController extends BaseController
         //BlogPost::find($id)->fill($all)->save();
 
         //$result=BlogPost::find($id);
-        $this->blogCategoryRepository->getUpdate($id,$request);
+        $this->blogCategoryRepository->updateCategory($id,$request);
 
         /*if($result){
             $result->fill(
@@ -139,7 +138,7 @@ class CategoryController extends BaseController
         BlogPost::find($id)->update($update);*/
 
 
-// ->With(['success' => 'work']);
+// ->with(['success' => 'work']);
 
 
     }
@@ -152,7 +151,7 @@ class CategoryController extends BaseController
      */
     public function destroy($id)
     {
-        BlogPost::destroy($id);
+        $this->blogCategoryRepository->deleteCategory($id);
 
         return redirect()->route('blog.admin.categories.index');
     }

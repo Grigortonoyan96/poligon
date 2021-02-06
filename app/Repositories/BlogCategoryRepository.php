@@ -6,54 +6,68 @@ use App\Models\BlogPost as Model;
 
 class BlogCategoryRepository extends CoreRepository
 {
+    /**
+     * @return string
+     */
     protected function getModelClass()
     {
         return Model::class;
         // TODO: Implement getModelClass() method.
     }
 
-
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getEdit($id)
     {
         return $this->startConditions()->find($id);
     }
 
-//    public function getForComboBox(){
-//      //  return $this->startConditions()->all();
-//
-//        $colums=implode(',',[
-//           'id', 'CONCAT (id.,'.'.,title) AS id_title'
-//        ]);
-//
-//       /* $result[]=$this->startConditions()->all();
-//        $result[]=$this->startConditions()
-//            ->select('blog_categories.*',
-//            \DB::raw('CONCAT(id,".",title) As id_title'))
-//            ->toBase()
-//            ->get();*/
-//        $result=$this->startConditions()
-//            ->selectRaw($colums)
-//            ->toBase()
-//            ->get();
-//
-//        dd($result->first());
-//
-//        return $result; 4.category#4
-//
-//
-//
-//}
-    public function getUpdate($id, $request)
+    /**
+     * @param $id
+     * @param $request
+     * @return mixed
+     */
+    public function updateCategory($id, $request)
     {
-        $this->startConditions()->find($id)->update(
+        return $this->getEdit($id)->update(
             ['category_id' => $request->category_id,
                 'title' => $request->title]);
     }
-    /* if($id){
-     $update=$request->except(['_method', "_token","user_id"]);
-     /*$this->startConditions()->update(['category_id' => $request->category_id ,
-         'title' => $request->title]);*/
-    //dd($this->startConditions()->update($update) , $update);
+
+    /**
+     * @param null $paginationLimit
+     * @return mixed
+     */
+    public function getCategories($paginationLimit = null)
+    {
+        if ($paginationLimit) {
+            return $this->startConditions()
+                ->with(['User','Category'])
+            ->paginate($paginationLimit);
+        }
+
+        return $this->startConditions()->all();
+    }
+
+    /**
+     * @param $createData
+     * @return mixed
+     */
+    public function createCategory($createData)
+    {
+        return $this->startConditions()->create($createData);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function deleteCategory($id)
+    {
+        return $this->startConditions()->destroy($id);
+    }
 
 
 }
