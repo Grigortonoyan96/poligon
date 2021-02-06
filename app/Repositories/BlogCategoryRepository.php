@@ -44,7 +44,8 @@ class BlogCategoryRepository extends CoreRepository
     {
         if ($paginationLimit) {
             return $this->startConditions()
-                ->with(['User','Category'])
+               // ->with(['User','Category'])
+                   ->with('category:title')
             ->paginate($paginationLimit);
         }
 
