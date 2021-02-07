@@ -33,7 +33,7 @@ class BlogPostObserver
         $test[]=$blogPost->getOriginal('is_published');  // ays toxi mijocov kstananq naxqin arjeq@
         dd($test);*/
 
-        //aystex karox enq naev logika grel 
+        //aystex karox enq naev logika grel
     }
 
 

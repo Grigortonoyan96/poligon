@@ -25,7 +25,14 @@ class BlogPostUpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|min:5|max:200',
-            'category_id'   => 'integer|max:11',
+            'category_id'   => 'required|integer|max:11',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'title.required'       =>  'wrong , this required input',
+            'category_id.required' =>  'wrong , this required input',
         ];
     }
 }
