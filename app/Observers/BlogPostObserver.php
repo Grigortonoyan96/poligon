@@ -45,7 +45,7 @@ class BlogPostObserver
      */
     public function updated(BlogPost $blogPost)
     {
-
+        dd($blogPost);
     }
 
     /**

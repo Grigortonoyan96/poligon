@@ -42,12 +42,12 @@ class BlogCategoryRepository extends CoreRepository
      */
     public function getCategories($paginationLimit = null)
     {
-        if ($paginationLimit) {
-            return $this->startConditions()
-               // ->with(['User','Category'])
-                   ->with('category:title')
-            ->paginate($paginationLimit);
-        }
+//        if ($paginationLimit) {
+//            return $this->startConditions()
+//               // ->with(['User','Category'])
+//                   ->with('category:title')
+//            ->paginate($paginationLimit);
+//        }
 
         return $this->startConditions()->all();
     }
@@ -58,7 +58,13 @@ class BlogCategoryRepository extends CoreRepository
      */
     public function createCategory($createData)
     {
-        return $this->startConditions()->create($createData);
+//        $this->startConditions()
+//            ->with('blog:title');
+//        return $this->startConditions()
+//            ->with('blog')
+//            ->create($createData);
+
+
     }
 
     /**

@@ -29,8 +29,9 @@ class CategoryController extends BaseController
      */
     public function index()
     {
+        $item= BlogPost::withTrashed()->get();
         $items = $this->blogCategoryRepository->getCategories(5);
-
+        dd(collect($item), collect($items));
         return view('blog.posts.index',compact('items'));
     }
 
@@ -106,20 +107,20 @@ class CategoryController extends BaseController
      */
     public function update(BlogPostUpdateRequest  $request, $id)
     {
-       /* $updateData = $request->except(['_method', "_token"]);*/
+        /* $updateData = $request->except(['_method', "_token"]);*/
 
-       /* BlogPost::find($id)->update($updateData);*/
+        /* BlogPost::find($id)->update($updateData);*/
 
 //        $blogPost->title = $request->title;
 //        $blogPost->category_id = $request->category_id;
 //        $blogPost->save();
 
         //BlogPost::find($id)->update(['title'=>$request->title,'category_id'=>$request->category_id]);
-       //$all=$request->all();
+        //$all=$request->all();
         //BlogPost::find($id)->fill($all)->save();
 
         //$result=BlogPost::find($id);
-        $this->blogCategoryRepository->updateCategory($id,$request);
+        $this->blogCategoryRepository->updateCategory($id, $request);
 
         /*if($result){
             $result->fill(
@@ -135,10 +136,7 @@ class CategoryController extends BaseController
 
         /*$update=$request->all();
 
-        BlogPost::find($id)->update($update);*/
 
-
-// ->with(['success' => 'work']);
 
 
     }
@@ -149,6 +147,7 @@ class CategoryController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    }
     public function destroy($id)
     {
         $this->blogCategoryRepository->deleteCategory($id);

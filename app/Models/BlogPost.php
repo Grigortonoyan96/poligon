@@ -13,12 +13,14 @@ class BlogPost extends Model
 
     protected $fillable = ['title', 'category_id','user_id','content_raw','content_html'];
 
-    public function User(){
+    /*public function User(){
         return $this->BelongsTo(User::class);
-    }
+    }*/
 
-    public function Category(){
-        return $this->BelongsTo(BlogCategory::class);
-    }
+
+
+    /*public function userID(){
+        return $this->hasOne(User::class);
+    }*/
 
 }

@@ -27,7 +27,6 @@
             <td>{{$item->id }}</td>
             <td>{{$item->title }}</td>
             <td>{{$item->category_id}}</td>
-            <td>{{$item->Category->title}}</td>
             <td>
                 <a href="{{route('blog.admin.categories.edit',$item->id)}}" class="btn btn-primary">edit</a>
             </td>
@@ -42,7 +41,7 @@
 
 
     @endforeach
-        {{ $items->links() }}
+{{--        {{ $items->links() }}--}}
     </tbody>
 </table>
 
